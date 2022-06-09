@@ -1,12 +1,9 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import VideoPlayer from '../components/VideoPlayer';
 
 const PlayScreen = () => {
-  return (
-    <View>
-      <Text>Hello World !</Text>
-    </View>
-  );
+  return <VideoPlayer />;
 };
 
 const style = StyleSheet.create({
