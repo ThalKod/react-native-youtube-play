@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Video from 'react-native-video';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Controls from "./Controls";
 
 const videoSample = require("../assets/sample_1.mp4");
 const {width} = Dimensions.get('window');
@@ -37,6 +38,7 @@ const VideoPlayer = () => {
         controls={true}
         onProgress={(p) => console.log("progress "+ JSON.stringify(p))}
       />
+      <Controls />
     </View>
   );
 };
@@ -45,37 +47,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject
-  },
-  overlaySet: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  icon: {
-    color: 'white',
-    flex: 1,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 25,
-  },
-  sliderCont: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  timer: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 5,
-  },
-  video: { width, height: width * .6, backgroundColor: 'black' },
-  fullscreenVideo: {
-    backgroundColor: 'black',
-    ...StyleSheet.absoluteFill,
-    elevation: 1,
+  video: {
+    width,
+    height: width * .6,
+    backgroundColor: 'black'
   },
 });
 
