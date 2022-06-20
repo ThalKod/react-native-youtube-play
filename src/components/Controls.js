@@ -10,30 +10,32 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { moderateScale } from "react-native-size-matters"
 import Slider from '@react-native-community/slider';
+import numeral from "numeral";
+import { toMinutes } from "../utils";
 
 const {width} = Dimensions.get('window');
 
-  const Controls = () => {
-  const [paused, setPaused] = useState(false);
+  const Controls = ({ duration, currentTime, onSlide, paused, setPaused }) => {
   const [thumbIcon, setThumbIcon] = useState();
 
-    useEffect(() => {
-      FontAwesome.getImageSource('circle', 15, '#ff0800')
-        .then(src => setThumbIcon(src));
+  useEffect(() => {
+    FontAwesome.getImageSource('circle', 15, '#ff0800')
+      .then(src => setThumbIcon(src));
     }, []);
+
 
   return (
     <View style={styles.container}>
       <View style={styles.mainControls}>
         <Ionicons name="play-skip-back-sharp" size={moderateScale(30)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
-        <Ionicons name={paused? "pause" : "play-sharp"} size={moderateScale(60)} color="#FFFFFF" style={{ marginHorizontal: moderateScale(40)}} onPress={() => setPaused(!paused)} />
+        <Ionicons name={paused? "play-sharp" : "pause"} size={moderateScale(60)} color="#FFFFFF" style={{ marginHorizontal: moderateScale(40)}} onPress={() => setPaused(!paused)} />
         <Ionicons name="play-skip-forward-sharp" size={moderateScale(30)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
       </View>
       <View style={styles.secondaryControls}>
         <View style={styles.timeContainer}>
-          <Text style={styles.activeTime}>0:11</Text>
+          <Text style={styles.activeTime}>{toMinutes(currentTime)}</Text>
           <Text style={[styles.nonActiveTime, {marginHorizontal: moderateScale(2)}]}>/</Text>
-          <Text style={styles.nonActiveTime}>4:33</Text>
+          <Text style={styles.nonActiveTime}>{toMinutes(duration)}</Text>
         </View>
         <FontAwesome5 name="expand" size={moderateScale(13)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
       </View>
@@ -41,9 +43,11 @@ const {width} = Dimensions.get('window');
         style={styles.slider}
         minimumValue={0}
         maximumValue={1}
+        value={currentTime / duration}
         minimumTrackTintColor="#ff0800"
         maximumTrackTintColor="#F7F7F7"
         thumbImage={thumbIcon}
+        onValueChange={onSlide}
       />
     </View>
   );
@@ -51,9 +55,10 @@ const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    position: "absolute",
     width,
     height: width * .6,
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     justifyContent: "center",
     padding: moderateScale(15)
   },
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
   },
   secondaryControls: {
     position: "absolute",
-    bottom: moderateScale(25),
+    bottom: moderateScale(15),
     width: width - moderateScale(20),
     flexDirection: "row",
     justifyContent: "space-between",

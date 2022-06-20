@@ -18,10 +18,15 @@ const VideoPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [overlay, setOverlay] = useState(true);
   const [fullscreen, setFullScreen] = useState(false);
 
   let player = useRef(null);
+
+  const onSlide = (slide) => {
+    player.seek(slide * duration);
+  }
 
   return (
     <View style={styles.container}>
@@ -32,13 +37,21 @@ const VideoPlayer = () => {
         source={videoSample}
         style={styles.video}
         resizeMode='cover'
-        onLoad={(duration) => console.log("Loaded " + duration)}
-        onBuffer={(b) => console.log("buffering " + b)}                // Callback when remote video is buffering
+        onLoad={({ duration }) =>  { setDuration(duration); setLoaded(true) } }
+        onBuffer={(b) => console.log("b" + b)}
         onError={(e) => console.log("Error " + JSON.stringify(e))}
-        controls={true}
-        onProgress={(p) => console.log("progress "+ JSON.stringify(p))}
+        controls={false}
+        onProgress={({currentTime}) => setCurrentTime(currentTime)}
       />
-      <Controls />
+      {loaded &&
+      <Controls
+        duration={duration}
+        currentTime={currentTime}
+        onSlide={onSlide}
+        paused={paused}
+        setPaused={setPaused}
+      />
+      }
     </View>
   );
 };
