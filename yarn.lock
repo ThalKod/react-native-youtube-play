@@ -5528,6 +5528,11 @@ react-native-codegen@^0.0.17:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-custom-slider@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-custom-slider/-/react-native-custom-slider-1.0.2.tgz#0e22fdc7a4b4199915503cbad8650f99b96ade64"
+  integrity sha512-mMRodZBKoVyAaVkVAcVfefPztsId8IlGALQPMOFtNi4OSjAEo/lsNfcsYT8b/BUowXLLdOfGzGyeXT4m2kstfw==
+
 react-native-gradle-plugin@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.6.tgz#b61a9234ad2f61430937911003cddd7e15c72b45"

@@ -7,47 +7,53 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { moderateScale } from "react-native-size-matters"
-import Slider from '@react-native-community/slider';
-import numeral from "numeral";
+import Slider from 'react-native-custom-slider';
 import { toMinutes } from "../utils";
 
 const {width} = Dimensions.get('window');
 
-  const Controls = ({ duration, currentTime, onSlide, paused, setPaused }) => {
-  const [thumbIcon, setThumbIcon] = useState();
+  const Controls = ({ duration, currentTime, onSlide, paused, setPaused, showControl }) => {
 
-  useEffect(() => {
-    FontAwesome.getImageSource('circle', 15, '#ff0800')
-      .then(src => setThumbIcon(src));
-    }, []);
-
+  const CustomThumb = () => {
+    if(showControl) return (
+      <View
+        style={{
+          width: moderateScale(10),
+          height: moderateScale(10),
+          overflow: 'hidden',
+          borderRadius: moderateScale(10),
+          backgroundColor: 'red'
+        }}
+      />
+    );
+    return <View />;
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.mainControls}>
-        <Ionicons name="play-skip-back-sharp" size={moderateScale(30)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
-        <Ionicons name={paused? "play-sharp" : "pause"} size={moderateScale(60)} color="#FFFFFF" style={{ marginHorizontal: moderateScale(40)}} onPress={() => setPaused(!paused)} />
-        <Ionicons name="play-skip-forward-sharp" size={moderateScale(30)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
-      </View>
-      <View style={styles.secondaryControls}>
+      { showControl && <View style={styles.mainControls}>
+        <Ionicons name="play-skip-back-sharp" size={moderateScale(20)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
+        <Ionicons name={paused? "play-sharp" : "pause"} size={moderateScale(40)} color="#FFFFFF" style={{ marginHorizontal: moderateScale(50)}} onPress={() => setPaused(!paused)} />
+        <Ionicons name="play-skip-forward-sharp" size={moderateScale(20)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
+      </View> }
+      { showControl && <View style={styles.secondaryControls}>
         <View style={styles.timeContainer}>
           <Text style={styles.activeTime}>{toMinutes(currentTime)}</Text>
           <Text style={[styles.nonActiveTime, {marginHorizontal: moderateScale(2)}]}>/</Text>
           <Text style={styles.nonActiveTime}>{toMinutes(duration)}</Text>
         </View>
         <FontAwesome5 name="expand" size={moderateScale(13)} color="#FFFFFF" onPress={() => {console.log("pressed !")}} />
-      </View>
+      </View> }
       <Slider
-        style={styles.slider}
+        value={currentTime / duration}
         minimumValue={0}
         maximumValue={1}
-        value={currentTime / duration}
         minimumTrackTintColor="#ff0800"
-        maximumTrackTintColor="#F7F7F7"
-        thumbImage={thumbIcon}
         onValueChange={onSlide}
+        thumbStyle={{ justifyContent: 'center', alignItems: 'center', width: 25 }}
+        customThumb={<CustomThumb />}
+        style={styles.slider}
       />
     </View>
   );
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     height: width * .6,
     backgroundColor: 'transparent',
     justifyContent: "center",
-    padding: moderateScale(15)
+    padding: moderateScale(0)
   },
   mainControls: {
     flexDirection: "row",
@@ -88,9 +94,10 @@ const styles = StyleSheet.create({
   },
   slider: {
     position: "absolute",
-    width,
-    height: moderateScale(5),
-    bottom: moderateScale(0),
+    height: moderateScale(0.2),
+    left: 0,
+    right: 0,
+    bottom: moderateScale(2)
   }
 });
 
