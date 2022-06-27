@@ -8,18 +8,18 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { moderateScale } from "react-native-size-matters";
 
 
-const IconActions = ({name}) => {
+const IconActions = ({name, text}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity style={styles.container}>
       <MaterialIcons name={name} size={moderateScale(22)} color="#B3B3B3" />
-      <Text style={styles.text}>16M</Text>
+      <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   )
 };
 
 const styles = StyleSheet.create({
   container: {
-
+    alignItems: "center"
   },
   text: {
     color: "#ffffff",

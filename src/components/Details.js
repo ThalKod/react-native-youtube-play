@@ -25,11 +25,11 @@ const Details = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.actionsContainer}>
-        <IconActions name="thumb-up"/>
-        <IconActions name="thumb-down"/>
-        <IconActions name="share"/>
-        <IconActions name="file-download"/>
-        <IconActions name="collections-bookmark"/>
+        <IconActions name="thumb-up" text="16M"/>
+        <IconActions name="thumb-down" text="Dislike"/>
+        <IconActions name="share" text="Share"/>
+        <IconActions name="file-download" text="Download"/>
+        <IconActions name="collections-bookmark" text="Save"/>
       </View>
     </View>
 
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#222222",
     paddingHorizontal: moderateScale(10),
     width,
+    marginTop: moderateScale(5)
   },
   container: {
     padding: moderateScale(5),
