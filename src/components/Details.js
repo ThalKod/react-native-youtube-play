@@ -7,7 +7,7 @@ import {
 import { moderateScale } from "react-native-size-matters";
 import Entypo from 'react-native-vector-icons/Entypo';
 import IconActions from "./IconActions";
-
+import ChannelInfo from "./ChannelInfo";
 
 const {width} = Dimensions.get('window');
 
