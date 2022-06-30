@@ -1,0 +1,16 @@
+import React from "react";
+import {
+  View,
+  Text
+} from "react-native";
+
+const DescriptionModal = () => {
+  return (
+    <View>
+      <Text>Hello World!</Text>
+    </View>
+  )
+}
+
+
+export default DescriptionModal;

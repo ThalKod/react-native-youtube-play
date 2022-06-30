@@ -17,12 +17,12 @@ const ChannelInfo = () => {
       <View style={styles.description}>
         <Image style={styles.logoStyle} source={{ uri: 'https://yt3.ggpht.com/a-/AAuE7mCyjJQ5F30O0hYRrMkEMC3dVNEfRdIW_ag61g=s900-mo-c-c0xffffffff-rj-k-no'}} />
         <View>
-          <Text>Score 90</Text>
-          <Text>2.23 subscribers</Text>
+          <Text style={styles.mainText}>Score 90</Text>
+          <Text style={styles.subText}>2.23M subscribers</Text>
         </View>
       </View>
       <TouchableOpacity>
-        <Text>SUBSCRIBE</Text>
+        <Text style={{ color: "#ff0800", fontWeight: "bold"}}>SUBSCRIBE</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   )
@@ -39,6 +39,15 @@ const styles = StyleSheet.create({
     borderTopWidth: moderateScale(.3),
     borderBottomWidth: moderateScale(.3),
     borderColor: "#cecece"
+  },
+  mainText: {
+    color: "#ffffff",
+    marginBottom: moderateScale(2),
+    fontSize: moderateScale(14)
+  },
+  subText: {
+    color: "#B3B3B3",
+    fontSize: moderateScale(12)
   },
   logoStyle: {
     width: moderateScale(30),

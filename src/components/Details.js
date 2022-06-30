@@ -2,7 +2,7 @@ import React from "react";
 import {
   View,
   Text,
-  StyleSheet, Dimensions, TouchableOpacity,
+  StyleSheet, Dimensions, TouchableOpacity, TouchableNativeFeedback,
 } from "react-native";
 import { moderateScale } from "react-native-size-matters";
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -12,18 +12,20 @@ import ChannelInfo from "./ChannelInfo";
 const {width} = Dimensions.get('window');
 
 
-const Details = () => {
+const Details = ({ openModal }) => {
   return (
     <View style={styles.DetailsContainer}>
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.mainTitle}>Dua Lipa - New Rules (Official Music Video)</Text>
-          <Text style={styles.subTitle}>2.6B Views - 4 yr ago</Text>
+      <TouchableOpacity onPress={openModal}>
+        <View style={styles.container}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.mainTitle}>Dua Lipa - New Rules (Official Music Video)</Text>
+            <Text style={styles.subTitle}>2.6B Views - 4 yr ago</Text>
+          </View>
+          <View>
+            <Entypo name="chevron-thin-down" size={moderateScale(12)} color="#B3B3B3" />
+          </View>
         </View>
-        <TouchableOpacity>
-          <Entypo name="chevron-thin-down" size={moderateScale(12)} color="#B3B3B3" />
-        </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
       <View style={styles.actionsContainer}>
         <IconActions name="thumb-up" text="16M"/>
         <IconActions name="thumb-down" text="Dislike"/>
