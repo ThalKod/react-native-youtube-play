@@ -4,6 +4,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import Details from "../components/Details";
 import ChannelInfo from "../components/ChannelInfo";
 import Modal from "react-native-modal";
+import DescriptionModal from "../components/DescriptionModal";
 
 const {width} = Dimensions.get('window');
 
@@ -16,32 +17,18 @@ const PlayScreen = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <VideoPlayer />
       <Details openModal={toggleModal} />
       <ChannelInfo/>
-      <Modal
-        hasBackdrop={false}
-        coverScreen={false}
-        isVisible={isModalVisible}
-        style={styles.modalContainer}>
-        <View style={styles.}>
-          <Text>Hello!</Text>
-
-          <Button title="Hide modal" onPress={toggleModal} />
-        </View>
-      </Modal>
+      <DescriptionModal isModalVisible={isModalVisible} toggleModal={toggleModal} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  modalContainer: {
-    justifyContent: 'flex-end',
-    margin: 0,
+
   },
 });
 
