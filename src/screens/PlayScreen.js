@@ -5,6 +5,7 @@ import Details from "../components/Details";
 import ChannelInfo from "../components/ChannelInfo";
 import Modal from "react-native-modal";
 import DescriptionModal from "../components/DescriptionModal";
+import CommentHighlight from "../components/CommentHighlight";
 
 const {width} = Dimensions.get('window');
 
@@ -22,6 +23,7 @@ const PlayScreen = () => {
       <Details openModal={toggleModal} />
       <ChannelInfo/>
       <DescriptionModal isModalVisible={isModalVisible} toggleModal={toggleModal} />
+      <CommentHighlight/>
     </View>
   );
 };

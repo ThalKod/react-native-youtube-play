@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
   mainText: {
     color: "#ffffff",
     marginBottom: moderateScale(2),
-    fontSize: moderateScale(14)
+    fontSize: moderateScale(14),
+    fontWeight: "bold"
   },
   subText: {
     color: "#B3B3B3",
