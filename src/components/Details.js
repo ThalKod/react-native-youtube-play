@@ -18,7 +18,7 @@ const Details = ({ openModal }) => {
       <TouchableOpacity onPress={openModal}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={styles.mainTitle}>Dua Lipa - New Rules (Official Music Video)</Text>
+            <Text style={styles.mainTitle}>Bunny The Rabbit - New Rules (Official Music Video)</Text>
             <Text style={styles.subTitle}>2.6B Views - 4 yr ago</Text>
           </View>
           <View>

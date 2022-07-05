@@ -11,14 +11,14 @@ import { moderateScale } from "react-native-size-matters";
 
 const {width} = Dimensions.get('window');
 
-const ChannelInfo = () => {
+const ChannelInfo = ({name, logo, sub}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.description}>
-        <Image style={styles.logoStyle} source={{ uri: 'https://yt3.ggpht.com/a-/AAuE7mCyjJQ5F30O0hYRrMkEMC3dVNEfRdIW_ag61g=s900-mo-c-c0xffffffff-rj-k-no'}} />
+        <Image style={styles.logoStyle} source={{ uri: logo}} />
         <View>
-          <Text style={styles.mainText}>Score 90</Text>
-          <Text style={styles.subText}>2.23M subscribers</Text>
+          <Text style={styles.mainText}>{name}</Text>
+          <Text style={styles.subText}>{sub} subscribers</Text>
         </View>
       </View>
       <TouchableOpacity>
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     paddingVertical: moderateScale(5),
     borderTopWidth: moderateScale(.3),
     borderBottomWidth: moderateScale(.3),
-    borderColor: "#cecece"
+    borderColor: "#cecece",
+    backgroundColor: "#222222"
   },
   mainText: {
     color: "#ffffff",
